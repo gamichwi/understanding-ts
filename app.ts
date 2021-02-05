@@ -1,15 +1,7 @@
-let userInput: unknown;
-let userName: string;
+const button = document.querySelector('button')!;
 
-userInput = 5;
-userInput = "GW";
+button.addEventListener('click', ()=> {
+    console.log('Clicked!');
+});
 
-if (typeof userInput === "string") {
-  userName = userInput;
-}
-
-function generateError(message: string, code: number): never {
-  throw { message: message, errorCode: code };
-}
-
-generateError("An error has occured!", 500);
+const map = new Map 
