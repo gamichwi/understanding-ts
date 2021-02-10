@@ -1,8 +1,11 @@
-"use strict";
 class Department {
-    constructor(n) {
-        this.name = n;
-    }
+  name: string;
+
+  constructor(n: string) {
+    this.name = n;
+  }
 }
+
 const accounting = new Department("Accounting");
+
 console.log(accounting);
