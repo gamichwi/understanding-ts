@@ -30,15 +30,29 @@ class AccountingDepartment extends Department {
     constructor(id, reports) {
         super(id, "Accounting");
         this.reports = reports;
+        this.lastReport = reports[0];
+    }
+    get mostRecentReport() {
+        if (this.lastReport) {
+            return this.lastReport;
+        }
+        throw new Error("No report found.");
+    }
+    set mostRecentReport(value) {
+        if (!value) {
+            throw new Error("Please pass a value");
+        }
+        this.addReport(value);
     }
     addReport(text) {
         this.reports.push(text);
+        this.lastReport = text;
     }
     printReports() {
         console.log(this.reports);
     }
     addEmployee(name) {
-        if (name === 'Max') {
+        if (name === "Max") {
             return;
         }
         this.employees.push(name);
@@ -46,10 +60,12 @@ class AccountingDepartment extends Department {
 }
 it.printEmployeeInformation();
 it.describe();
-const accounting = new AccountingDepartment('d2', []);
+const accounting = new AccountingDepartment("d2", []);
 console.log(accounting);
-accounting.addReport('Yellow pages');
+accounting.mostRecentReport = "Year End Report";
+accounting.addReport("Yellow pages");
+console.log("Last Report", accounting.mostRecentReport);
 accounting.printReports();
-accounting.addEmployee('Max');
-accounting.addEmployee('Gav');
+accounting.addEmployee("Max");
+accounting.addEmployee("Gav");
 accounting.printEmployeeInformation();
