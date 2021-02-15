@@ -1,4 +1,5 @@
 class Department {
+  static fiscalYear = 2020;
   // private readonly id: string;
   // private name: string;
   protected employees: string[] = [];
@@ -6,6 +7,10 @@ class Department {
   constructor(private readonly id: string, public name: string) {
     // this.id = id;
     // this.name = name;
+  }
+
+  static createEmployee(name: string) {
+    return { name: name };
   }
 
   describe(this: Department) {
@@ -72,6 +77,9 @@ class AccountingDepartment extends Department {
     this.employees.push(name);
   }
 }
+
+const employee1 = Department.createEmployee("Jennifer");
+console.log("employee", employee1, "from", Department.fiscalYear);
 
 it.printEmployeeInformation();
 it.describe();
